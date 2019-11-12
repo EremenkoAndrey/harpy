@@ -28,6 +28,10 @@ class _TweetTileContentState extends State<TweetTileContent>
     final mediaQuery = MediaQuery.of(context);
     final scrollDirection = ScrollDirection.of(context);
 
+    if (!model.isVisible) {
+      return Container();
+    }
+
     // only slide and fade in the tweet tile from the right when scrolling down
     final offset = scrollDirection.direction == VerticalDirection.up
         ? const Offset(0, 0)
@@ -380,8 +384,14 @@ class TweetActionsRow extends StatelessWidget {
           favorite: model.favorite,
           unfavorite: model.unfavorite,
         ),
+        Spacer(),
+        if (model.canBeDeleted) ...{
+          IconButton(
+            onPressed: model.delete,
+            icon: const Icon(Icons.delete),
+          )
+        },
         if (model.allowTranslation) ...[
-          Spacer(),
           _TweetTranslationButton(model),
         ],
       ],

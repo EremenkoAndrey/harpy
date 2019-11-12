@@ -40,6 +40,8 @@ class TweetModel extends ChangeNotifier {
   /// True while the [tweet] is being translated.
   bool translating = false;
 
+  bool isVisible = true;
+
   /// The names of the user that replied to this [tweet] in a formatted string.
   ///
   /// `null` if the [tweet] does not have any replies.
@@ -91,6 +93,8 @@ class TweetModel extends ChangeNotifier {
   /// Whether or not this tweet can be translated.
   bool get allowTranslation => !tweet.emptyText && tweet.lang != "en";
 
+  bool get canBeDeleted => tweet.user.isCurrentUser;
+
   /// Retweet this [tweet].
   void retweet() {
     tweet.retweeted = true;
@@ -120,6 +124,27 @@ class TweetModel extends ChangeNotifier {
         if (!_actionPerformed(error)) {
           tweet.retweeted = true;
           tweet.retweetCount++;
+          notifyListeners();
+        }
+      });
+  }
+
+  /// Delete this tweet
+  void delete() {
+    tweetService.deleteTweet(
+      tweet.idStr,
+    )
+      ..then(
+        (_) => tweetDatabase.deleteTweet(
+          tweet.id,
+        ),
+      )
+      ..then((_) {
+        isVisible = false;
+        notifyListeners();
+      })
+      ..catchError((error) {
+        if (!_actionPerformed(error)) {
           notifyListeners();
         }
       });

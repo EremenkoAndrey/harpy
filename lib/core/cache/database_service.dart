@@ -28,6 +28,27 @@ class DatabaseService {
     return compute<String, bool>(_isolateDrop, path);
   }
 
+  Future<int> delete({
+    @required String path,
+    @required StoreRef store,
+    @required dynamic key,
+  }) async {
+    final Map<String, dynamic> message = {
+      "path": path,
+      "store": store,
+      "key": key,
+    };
+
+    assert(message["path"] is String);
+    assert(message["store"] is StoreRef);
+    assert(message["key"] != null);
+
+    return compute<Map<String, dynamic>, int>(
+      _isolateDelete,
+      message,
+    );
+  }
+
   /// Records the [data] associated to the [key] in the [store] for this
   /// database in an isolate.
   ///
@@ -183,6 +204,19 @@ Future<dynamic> _isolateFindFirst(Map<String, dynamic> message) async {
   final Database db = await databaseFactoryIo.openDatabase(path);
 
   return store.findFirst(db, finder: finder).then((record) => record?.value);
+}
+
+Future<int> _isolateDelete(Map<String, dynamic> message) async {
+  final String path = message['path'];
+  final StoreRef store = message['store'];
+  final Finder finder = message['finder'];
+
+  final Database db = await databaseFactoryIo.openDatabase(path);
+
+  return store.delete(
+    db,
+    finder: finder,
+  );
 }
 
 Future<bool> _isolateDrop(String path) async {

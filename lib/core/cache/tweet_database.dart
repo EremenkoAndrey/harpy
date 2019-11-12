@@ -165,6 +165,16 @@ class TweetDatabase extends HarpyDatabase {
     }
   }
 
+  Future<int> deleteTweet(int id) {
+    _log.fine("Delete $id from tweet database");
+
+    return databaseService.delete(
+      path: path,
+      store: store,
+      key: id,
+    );
+  }
+
   /// Returns whether or not a tweet with the [id] exists in the tweet database.
   Future<bool> tweetExists(int id) async {
     _log.fine("checking if tweet with id $id exists");

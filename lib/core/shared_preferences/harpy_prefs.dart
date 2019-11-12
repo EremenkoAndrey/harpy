@@ -16,6 +16,8 @@ class HarpyPrefs {
   /// The [prefix] is used in keys for user specific preferences.
   String get prefix => applicationModel.twitterSession.userId;
 
+  int get currentUserId => int.parse(applicationModel.twitterSession.userId);
+
   Future<void> init() async {
     _log.fine("initializing harpy prefs");
     preferences = await SharedPreferences.getInstance();

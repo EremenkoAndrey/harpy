@@ -1,5 +1,7 @@
 import 'package:harpy/api/twitter/data/user_entities.dart';
+import 'package:harpy/core/shared_preferences/harpy_prefs.dart';
 import 'package:harpy/core/utils/date_utils.dart';
+import 'package:harpy/harpy.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -91,4 +93,6 @@ class User {
 
   @override
   int get hashCode => id.hashCode;
+
+  bool get isCurrentUser => app<HarpyPrefs>().prefix == id.toString();
 }

@@ -96,6 +96,28 @@ class TweetService {
         );
   }
 
+  /// Deletes a single tweet
+  Future<Tweet> deleteTweet(
+    String tweetId,
+  ) async {
+    if (tweetId == null || tweetId.isEmpty) {
+      _log.shout("Tried to delete a tweet, but the given ID was not defined");
+      throw ArgumentError.notNull("tweetId");
+    }
+
+    _log.fine("Delete tweet $tweetId");
+    return twitterClient
+        .post(
+          "https://api.twitter.com/1.1/statuses/destroy/$tweetId.json",
+        )
+        .then(
+          (response) => compute<String, Tweet>(
+            _handleSingleTweetResponse,
+            response.body,
+          ),
+        );
+  }
+
   /// Returns the user timeline for the [userId].
   Future<List<Tweet>> getUserTimeline(
     String userId, {
