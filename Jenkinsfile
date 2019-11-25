@@ -1,5 +1,5 @@
 pipeline {
-    agent { }
+    agent { none }
     stages {
         stage('Clone Flutter') {
             steps {
