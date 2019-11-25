@@ -1,7 +1,10 @@
 pipeline {
-  stages {
-    stage('Clone Flutter') {
-      sh 'echo clone stuff!'
+    agent { }
+    stages {
+        stage('Clone Flutter') {
+            steps {
+                sh 'echo test'
+            }
+        }
     }
-  }
 }
