@@ -14,7 +14,7 @@ dependencies:
   logs:
     git: https://github.com/pq/logs
   intl: ^0.16.0
-  cached_network_image: ^1.1.1
+  cached_network_image: ^2.0.0-rc
   photo_view:
     git:
       url: git://github.com/robertodoering/photo_view.git
