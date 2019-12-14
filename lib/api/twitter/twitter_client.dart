@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:harpy/core/utils/string_utils.dart';
 import 'package:harpy/models/application_model.dart';
 import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:oauth1/oauth1.dart' as oauth1;
-import 'package:path_provider/path_provider.dart';
 
 /// Provides methods for network calls.
 ///
@@ -56,22 +54,6 @@ class TwitterClient {
     );
   }
 
-  /// Saves the response on the device as a file for debugging.
-  Future<void> _saveResponse(Response response) async {
-    _log.info("saving response");
-    final dir = await getApplicationDocumentsDirectory();
-
-    final String url =
-        response.request.url.toString().split("/").last.split("?").first;
-    final String time = DateTime.now().toIso8601String();
-
-    final String path = "${dir.path}/responses/${time}_$url";
-    File(path)
-      ..createSync(recursive: true)
-      ..writeAsStringSync(response.body);
-    _log.info("response saved in $path");
-  }
-
   Future<Response> get(
     String url, {
     Map<String, String> headers,
@@ -89,7 +71,10 @@ class TwitterClient {
         .get(url, headers: headers)
         .timeout(timeout ?? _timeout)
         .then((response) {
-//      _saveResponse(response);
+      _log
+        ..fine("received response ${response.request.url}")
+        ..fine("statusCode: ${response.statusCode}")
+        ..fine("body: ${response.body}");
       if (!response.statusCode.toString().startsWith("2")) {
         return Future.error(response);
       } else {
@@ -118,7 +103,11 @@ class TwitterClient {
         .post(url, headers: headers, body: body, encoding: encoding)
         .timeout(_timeout)
         .then((response) {
-//      _saveResponse(response);
+      _log
+        ..fine("received response ${response.request.url}")
+        ..fine("statusCode: ${response.statusCode}")
+        ..fine("body: ${response.body}");
+
       if (!response.statusCode.toString().startsWith("2")) {
         return Future.error(response);
       } else {
