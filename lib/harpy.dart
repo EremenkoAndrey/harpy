@@ -28,6 +28,7 @@ void runHarpy(Flavor flavor) {
 
   setupServices();
 
+  WidgetsFlutterBinding.ensureInitialized();
   analytics.logAppOpen();
 
   // HarpyErrorHandler will run the app and handle uncaught errors
