@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harpy/api/twitter/data/user.dart';
+import 'package:harpy/api/twitter/services/direct_messages.dart';
 import 'package:harpy/components/screens/about_screen.dart';
 import 'package:harpy/components/screens/compose_tweet_screen.dart';
 import 'package:harpy/components/screens/home_screen.dart';
@@ -87,6 +88,13 @@ class HomeDrawer extends StatelessWidget {
           onTap: () async {
             await Navigator.of(context).maybePop();
             HarpyNavigator.push(const AboutScreen(), name: "about");
+          },
+        ),
+
+        ListTile(
+          title: const Text("Test"),
+          onTap: () async {
+            await app<DirectMessagesService>().list();
           },
         ),
 
