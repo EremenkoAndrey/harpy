@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harpy/api/twitter/data/user.dart';
-import 'package:harpy/api/twitter/services/direct_messages.dart';
+import 'package:harpy/api/twitter/services/direct_messages_service.dart';
 import 'package:harpy/components/screens/about_screen.dart';
 import 'package:harpy/components/screens/compose_tweet_screen.dart';
 import 'package:harpy/components/screens/home_screen.dart';
@@ -98,7 +98,7 @@ class HomeDrawer extends StatelessWidget {
           },
         ),
 
-        Spacer(),
+        const Spacer(),
 
         ListTile(
           leading: const Icon(Icons.arrow_back),

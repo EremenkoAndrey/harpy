@@ -52,7 +52,7 @@ class WebviewScreenState extends State<WebviewScreen> {
                       icon: const Icon(Icons.arrow_forward),
                       onPressed: _goForward,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.refresh),
                       onPressed: _reload,

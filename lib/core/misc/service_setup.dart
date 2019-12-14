@@ -1,5 +1,5 @@
 import 'package:harpy/api/translate/translate_service.dart';
-import 'package:harpy/api/twitter/services/direct_messages.dart';
+import 'package:harpy/api/twitter/services/direct_messages_service.dart';
 import 'package:harpy/api/twitter/services/media_service.dart';
 import 'package:harpy/api/twitter/services/tweet_search_service.dart';
 import 'package:harpy/api/twitter/services/tweet_service.dart';
@@ -24,7 +24,8 @@ void setupServices() {
     ..registerLazySingleton<MediaService>(() => MediaService())
     ..registerLazySingleton<UserService>(() => UserService())
     ..registerLazySingleton<DirectMessagesService>(
-        () => DirectMessagesService())
+      () => DirectMessagesService(),
+    )
 
     // cache
     ..registerLazySingleton<DatabaseService>(() => DatabaseService())

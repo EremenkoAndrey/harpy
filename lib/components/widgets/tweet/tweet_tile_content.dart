@@ -489,7 +489,7 @@ class TweetActionsRow extends StatelessWidget {
           unfavorite: model.unfavorite,
         ),
         if (model.allowTranslation) ...[
-          Spacer(),
+          const Spacer(),
           _TweetTranslationButton(model),
         ],
       ],

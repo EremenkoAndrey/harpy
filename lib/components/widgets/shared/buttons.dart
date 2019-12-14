@@ -31,7 +31,7 @@ class CircleButton extends StatelessWidget {
         highlightColor: highlightColor,
         splashColor: splashColor,
         onTap: onPressed,
-        customBorder: CircleBorder(),
+        customBorder: const CircleBorder(),
         child: Padding(
           padding: padding,
           child: child,

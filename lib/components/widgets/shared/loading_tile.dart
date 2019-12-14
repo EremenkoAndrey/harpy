@@ -23,7 +23,7 @@ class LoadingTweetTile extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(backgroundColor: Colors.white),
+                const CircleAvatar(backgroundColor: Colors.white),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -56,7 +56,7 @@ class LoadingUserTile extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        CircleAvatar(backgroundColor: Colors.white),
+        const CircleAvatar(backgroundColor: Colors.white),
         const SizedBox(width: 16),
         Expanded(
           flex: 2,

@@ -97,7 +97,7 @@ class ThemeCard extends StatelessWidget {
                 onLongPress: () => _onLongPress(themeSettingsModel),
                 child: Column(
                   children: <Widget>[
-                    Spacer(),
+                    const Spacer(),
                     _buildThemeName(context),
                     Expanded(child: _buildThemeColors()),
                   ],

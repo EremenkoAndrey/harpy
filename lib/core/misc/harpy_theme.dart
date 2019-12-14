@@ -151,7 +151,7 @@ class HarpyTheme {
           ),
 
           // body
-          body1: TextStyle(
+          body1: const TextStyle(
             fontSize: 16,
             fontFamily: bodyFont,
           ),
