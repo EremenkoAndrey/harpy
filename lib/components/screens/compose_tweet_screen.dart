@@ -73,7 +73,7 @@ class _ComposeTweetScreenState extends State<ComposeTweetScreen> {
               icon: const Icon(Icons.image),
               onPressed: model.canAddMedia ? model.addMedia : null,
             ),
-            Spacer(),
+            const Spacer(),
             HarpyButton.raised(
               text: "Tweet",
               dense: true,

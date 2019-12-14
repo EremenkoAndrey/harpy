@@ -326,7 +326,7 @@ class _MediaVideoOverlayState extends State<MediaVideoOverlay>
                 ),
               ),
 
-              Spacer(),
+              const Spacer(),
 
               CircleButton(
                 onPressed: _toggleMute,
