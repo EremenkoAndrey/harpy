@@ -32,9 +32,9 @@ class DirectMessageCreate {
 
   Map<String, dynamic> target;
   @JsonKey(name: "sender_id")
-  int senderId;
+  String senderId;
   @JsonKey(name: "source_app_id")
-  int sourceAppId;
+  String sourceAppId;
 
   Map<String, dynamic> toJson() => _$DirectMessageCreateToJson(this);
 }

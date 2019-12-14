@@ -30,8 +30,8 @@ Map<String, dynamic> _$DirectMessageEventToJson(DirectMessageEvent instance) =>
 DirectMessageCreate _$DirectMessageCreateFromJson(Map<String, dynamic> json) {
   return DirectMessageCreate()
     ..target = json['target'] as Map<String, dynamic>
-    ..senderId = json['sender_id'] as int
-    ..sourceAppId = json['source_app_id'] as int;
+    ..senderId = json['sender_id'] as String
+    ..sourceAppId = json['source_app_id'] as String;
 }
 
 Map<String, dynamic> _$DirectMessageCreateToJson(
